@@ -5,7 +5,7 @@
 
 
 # PLAN
-# 1. Create CSV file of dishes and prices
+# 1. Create CSV file of dishes and prices?
 # 2. Create rspec test suite
 # 3. Create script for menu, ensuring items can be accessed from other classes using
 # some form of dish ID (?)
