@@ -1,6 +1,6 @@
 class Order
 
-def create
+def create(*items)
 end
 
 
