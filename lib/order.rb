@@ -1,21 +1,30 @@
-require './lib/menu.rb'
+require_relative 'menu'
 
 class Order
 
-attr_reader :menu
+attr_reader :menu, :basket, :balance
 
-def initialize
-  @basket = []
-  @menu = Menu.new
-end
-
-def add(item, quantity = 1)
-  raise "Sorry, this item is not available" unless available?(item)
-    quantity.times { @basket << item }
+  def initialize
+    @menu = Menu.new
+    @basket = []
+    @balance = 0
   end
 
-def available?(item)
-   @menu.dishes.key?(item)
- end
+  def add(item, quantity = 1)
+    raise "Sorry, this item is not available" unless available?(item)
+      @menu.dishes.each do |k, v|
+      if item == k
+      quantity.times { @basket << {item: v} }
+      end
+    end
+  end
+
+  def available?(item)
+     @menu.dishes.key?(item)
+  end
+
+  def total
+    @basket.inject(0) { |total, (k, v)| total + v.to_i }
+  end
 
 end
