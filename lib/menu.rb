@@ -20,10 +20,10 @@ class Menu
 
     def print_menu
         menu_list
-        dishes.each do | item |
+        dishes.each_with_index do | item, index |
           item.each do | dish, price |
             price = sprintf('%.2f', price)
-            puts "#{dish} £#{price}"
+            puts "#{index+1}. #{dish} £#{price}"
           end
         end
     end
