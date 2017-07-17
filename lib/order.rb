@@ -21,11 +21,6 @@ attr_reader :menu, :basket, :balance
      @menu.dishes.key?(item)
   end
 
-  # def calc_total
-  #  sub_total = @basket.map { |item| item.values }
-  #  sub_total.flatten.inject(:+)
-  # end
-
   def print_order
     print_header
     @basket.each do |hash| hash
