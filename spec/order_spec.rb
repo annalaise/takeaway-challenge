@@ -20,16 +20,24 @@ it 'confirms dish is unavailable' do
   expect{ order.add(:fantasy_pizza) }.to raise_error("Sorry, this item is not available")
 end
 
-  # context 'has items in basket' do
-  # before do
-  #   order.add(:double_cheese_burger, 2)
-  #   order.add(:veggie_burger, 2)
-  #   order.add(:regular_fries)
-  #   end
-  #
-  #   it 'confirms total of order' do
-  #     expect(order.total).to eq 33
-  #   end
-  # end
+  context 'items have been added' do
+    before do
+    order.add(:double_cheese_burger)
+    order.add(:veggie_burger, 2)
+    order.add(:regular_fries)
+    end
+
+    it 'has items in basket' do
+      expect(order.basket).to_not be_empty
+    end
+
+    it 'has a balance' do
+      expect(order.balance).to eq 24.5
+    end
+
+    it '#print_order' do
+      expect{ order.print_order }.to output.to_stdout
+    end
+  end
 
 end

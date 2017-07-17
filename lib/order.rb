@@ -12,19 +12,37 @@ attr_reader :menu, :basket, :balance
 
   def add(item, quantity = 1)
     raise "Sorry, this item is not available" unless available?(item)
-      @menu.dishes.each do |k, v|
-      if item == k
-      quantity.times { @basket << {item: v} }
-      end
-    end
+      price = @menu.dishes[item]
+      quantity.times { @basket << {item=>price} }
+      quantity.times { @balance += price }
   end
 
   def available?(item)
      @menu.dishes.key?(item)
   end
 
-  def total
-    @basket.inject(0) { |total, (k, v)| total + v.to_i }
+  # def calc_total
+  #  sub_total = @basket.map { |item| item.values }
+  #  sub_total.flatten.inject(:+)
+  # end
+
+  def print_order
+    print_header
+    @basket.each do |hash| hash
+      hash.each { |item, price| puts "#{item.to_s.capitalize} £#{price}0" }
+    end
+    print_total
+  end
+
+private
+
+  def print_header
+    puts "Your Order:"
+    puts "==========="
+  end
+
+  def print_total
+    puts "Your order total is £#{balance}0"
   end
 
 end
